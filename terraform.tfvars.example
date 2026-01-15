@@ -1,0 +1,21 @@
+# Copy this file to terraform.tfvars and update with your values
+# terraform.tfvars is gitignored and won't be committed
+
+# AWS Configuration
+aws_region   = "us-east-1"
+project_name = "node-crud-api"
+environment  = "dev"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+
+# Database Configuration
+db_name           = "cruddb"
+db_username       = "dbadmin"
+db_instance_class = "db.t3.micro"
+
+# Custom Domain Configuration (Optional)
+# Leave these empty to use the default CloudFront domain
+# route53_zone_id      = "Z0123456789ABCDEFGHIJ"  # Your Route53 hosted zone ID
+# frontend_domain      = "your-app.example.com"    # Your custom domain
+# acm_certificate_arn  = "arn:aws:acm:us-east-1:123456789012:certificate/abc-123"  # Your ACM cert ARN
