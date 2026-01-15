@@ -201,7 +201,7 @@ curl -X DELETE "<API_URL>/items/1" \
 │       ├── s3_frontend.tf   # S3 bucket for frontend hosting
 │       ├── route53.tf       # Route53 DNS records
 │       └── terraform.tfvars.example  # Example variables file
-├── lambda/
+├── backend/
 │   ├── index.mjs            # Lambda handler with SSL support
 │   ├── package.json         # Node.js dependencies
 │   └── package-lock.json
@@ -356,10 +356,10 @@ terraform destroy
 
 ## Development
 
-### Local Lambda Testing
+### Local Backend Testing
 
 ```bash
-cd lambda
+cd backend
 npm install
 node -e "import('./index.mjs').then(m => m.handler({...}))"
 ```

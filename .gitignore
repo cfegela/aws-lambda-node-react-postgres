@@ -5,10 +5,10 @@
 *.tfvars
 *.tfplan
 
-# Lambda
-lambda.zip
-lambda/node_modules/
-lambda/package-lock.json
+# Backend
+backend.zip
+backend/node_modules/
+backend/package-lock.json
 
 # Frontend
 frontend/node_modules/
