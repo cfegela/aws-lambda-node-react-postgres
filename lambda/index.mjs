@@ -14,6 +14,9 @@ function getPool() {
       password: process.env.DB_PASSWORD,
       max: 5,
       idleTimeoutMillis: 30000,
+      ssl: {
+        rejectUnauthorized: false
+      }
     });
   }
   return pool;
