@@ -1,20 +1,20 @@
 # Build Lambda deployment package
 resource "null_resource" "lambda_build" {
   triggers = {
-    source_hash = filesha256("${path.module}/lambda/index.mjs")
-    package_hash = filesha256("${path.module}/lambda/package.json")
+    source_hash  = filesha256("${path.module}/../../lambda/index.mjs")
+    package_hash = filesha256("${path.module}/../../lambda/package.json")
   }
 
   provisioner "local-exec" {
     command     = "npm install --production"
-    working_dir = "${path.module}/lambda"
+    working_dir = "${path.module}/../../lambda"
   }
 }
 
 data "archive_file" "lambda" {
   type        = "zip"
-  source_dir  = "${path.module}/lambda"
-  output_path = "${path.module}/lambda.zip"
+  source_dir  = "${path.module}/../../lambda"
+  output_path = "${path.module}/../../lambda.zip"
 
   depends_on = [null_resource.lambda_build]
 }

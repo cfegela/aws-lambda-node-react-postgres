@@ -41,6 +41,9 @@ A full-stack serverless CRUD application built with React, Node.js, AWS Lambda, 
 ### 1. Deploy Infrastructure
 
 ```bash
+# Navigate to the Terraform directory
+cd ops/terraform
+
 # (Optional) Configure custom domain settings
 # Copy terraform.tfvars.example to terraform.tfvars and update with your values
 cp terraform.tfvars.example terraform.tfvars
@@ -182,29 +185,36 @@ curl -X DELETE "<API_URL>/items/1" \
 
 ```
 .
-├── main.tf              # Terraform config and providers
-├── variables.tf         # Input variables
-├── outputs.tf           # Output values
-├── state.tf             # Remote state configuration
-├── vpc.tf               # VPC, subnets, NAT gateway, security groups
-├── rds.tf               # PostgreSQL RDS instance
-├── lambda.tf            # Lambda function and packaging
-├── api_gateway.tf       # API Gateway REST API and methods
-├── cognito.tf           # Cognito User Pool and authorizer
-├── iam.tf               # IAM roles and policies
+├── ops/
+│   └── terraform/           # Terraform infrastructure code
+│       ├── main.tf          # Terraform config and providers
+│       ├── variables.tf     # Input variables
+│       ├── outputs.tf       # Output values
+│       ├── state.tf         # Remote state configuration
+│       ├── vpc.tf           # VPC, subnets, NAT gateway, security groups
+│       ├── rds.tf           # PostgreSQL RDS instance
+│       ├── lambda.tf        # Lambda function and packaging
+│       ├── api_gateway.tf   # API Gateway REST API and methods
+│       ├── cognito.tf       # Cognito User Pool and authorizer
+│       ├── iam.tf           # IAM roles and policies
+│       ├── cloudfront.tf    # CloudFront distribution
+│       ├── s3_frontend.tf   # S3 bucket for frontend hosting
+│       ├── route53.tf       # Route53 DNS records
+│       └── terraform.tfvars.example  # Example variables file
 ├── lambda/
-│   ├── index.mjs        # Lambda handler with SSL support
-│   ├── package.json     # Node.js dependencies
+│   ├── index.mjs            # Lambda handler with SSL support
+│   ├── package.json         # Node.js dependencies
 │   └── package-lock.json
-└── frontend/            # React application
+└── frontend/                # React application
     ├── src/
     │   ├── components/
-    │   │   ├── Login.js       # Cognito login page
+    │   │   ├── Login.js     # Cognito login page
     │   │   ├── Login.css
-    │   │   ├── Items.js       # CRUD operations UI
+    │   │   ├── Items.js     # CRUD operations UI
     │   │   └── Items.css
-    │   ├── config.js          # AWS configuration
-    │   ├── App.js             # Main app component
+    │   ├── config.js        # AWS configuration
+    │   ├── config.example.js  # Example config file
+    │   ├── App.js           # Main app component
     │   └── App.css
     ├── package.json
     └── README.md
@@ -338,6 +348,7 @@ The application creates 53+ AWS resources including:
 To destroy all resources:
 
 ```bash
+cd ops/terraform
 terraform destroy
 ```
 

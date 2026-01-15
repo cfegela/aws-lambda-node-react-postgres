@@ -43,7 +43,7 @@ variable "db_instance_class" {
 variable "route53_zone_id" {
   description = "Route53 hosted zone ID for the domain"
   type        = string
-  default     = ""  # Set this if you want to use a custom domain
+  default     = "" # Set this if you want to use a custom domain
 }
 
 variable "frontend_domain" {
